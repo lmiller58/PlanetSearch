@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { fabric } from 'fabric';
+import { connect } from 'react-redux';
 import './App.css';
-
+// import axios from 'axios';
+// import SolarRenderer from './components/SolarRenderer';
+import SearchStarForm from './components/SearchStarForm';
+import StarGrid from './components/StarGrid';
+import Drawer from './components/Bar';
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+  // componentDidUpdate() {
+  //   this.setState({
+  //     render: true
+  //   });
+  // }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Drawer />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    stars: state.stars,
+    grid: state.grid
+  };
+};
+export default connect(mapStateToProps)(App);
